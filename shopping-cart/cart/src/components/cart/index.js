@@ -34,7 +34,7 @@ export default class Cart extends Component {
           <Card>
             <CardTitle>Totals</CardTitle>
             <CardBody>
-              <span>item list</span>
+              Total: ${this.context.total.toFixed(2)}
             </CardBody>
           </Card>
         </Col>
