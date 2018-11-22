@@ -1,0 +1,25 @@
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.app-content {
+  padding: 0 40px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.card-title {
+  padding: 1rem;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
