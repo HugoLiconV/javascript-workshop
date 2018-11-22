@@ -19,16 +19,12 @@ export default class Store extends Component {
   }
 
 
-  onAddProductToCart = id => {
-    console.log(id)
-    const product = this.productsService.getProduct(id)
-    if (product) {
-      this.cartService.addCartItem(id, product)
-    }
+  onAddProductToCart = async id => {
+    await this.cartService.addCartItem(id, { qty: 1 })
+    this.context.getCart()
   }
 
   render() {
-    console.log(this.context)
     return (<div className="products">
       <ProductList
         products={this.context.products}

@@ -12,7 +12,6 @@ export default class NavigationBar extends Component {
   static contextType = CartContext
 
   render() {
-    console.log(this.context)
     return (<div>
       <Navbar color="light" light expand="md">
         <Link className="navbar-brand" to="/">Online Store</Link>

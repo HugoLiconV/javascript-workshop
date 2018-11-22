@@ -23,8 +23,16 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    await this.getProducts()
+    await this.getCart()
+  }
+
+  getProducts = async () => {
     const products = await this.productsService.getProducts()
     this.updateProducts(products)
+  }
+
+  getCart = async () => {
     const cart = await this.cartService.getCart()
     this.updateCart(cart)
   }
@@ -44,8 +52,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ProductsContext.Provider value={{products: this.state.products, updateProducts: this.updateProducts}}>
-          <CartContext.Provider value={{ ...this.state.cart, updateCart: this.updateCart}}>
+        <ProductsContext.Provider
+          value={
+            {
+              products: this.state.products,
+              getCart: this.getCart,
+              getProducts: this.getProducts,
+              updateProducts: this.updateProducts,
+            }
+          }
+        >
+          <CartContext.Provider value={{ ...this.state.cart, getCart: this.getCart, updateCart: this.updateCart}}>
             <Router>
               <div>
                 <NavBar />

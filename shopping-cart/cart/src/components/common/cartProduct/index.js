@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
-import { FormGroup, Label, ListGroupItem, Media, Input } from 'reactstrap'
+import { Button, FormGroup, Label, ListGroupItem, Media, Input } from 'reactstrap'
 import CartItemPropType from '../../../propTypes/cartItem'
 import './index.css'
 
 const CartProduct = ({ item: cartItem, onDelete, onChangeQty }) => {
-  const { item, quantity } = cartItem
+  const { item, qty } = cartItem
   return (<Fragment>
     <ListGroupItem>
       <Media>
@@ -15,8 +15,8 @@ const CartProduct = ({ item: cartItem, onDelete, onChangeQty }) => {
           </Media>
           <div>{item.description}</div>
           <FormGroup>
-            <Label for="quantity">Quantity Selected</Label>
-            <Input value={quantity} name="quantity" type="select" onChange={(e) => onChangeQty(item.id, e)}>
+            <Label for="quantity" className="quantity">Quantity Selected</Label>
+            <Input value={qty} name="quantity" type="select" onChange={(e) => onChangeQty(item.id, e)}>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -34,6 +34,7 @@ const CartProduct = ({ item: cartItem, onDelete, onChangeQty }) => {
           <Media src={item.imageUrl} alt={item.title} className="cart-item-image" />
         </Media>
       </Media>
+      <Button onClick={() => onDelete(item.id)} color="danger">Remove from Cart</Button>
     </ListGroupItem>
   </Fragment>)
 }
