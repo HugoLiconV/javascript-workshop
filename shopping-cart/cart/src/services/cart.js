@@ -42,16 +42,3 @@ export default class CartService extends RequestService {
     })
   }
 }
-
-function findCartItem(cart, itemId) {
-  return _.find(cart.items, item => item.id === itemId)
-}
-
-async function getCart(userId) {
-  let userCart = CartStore[userId]
-  if (!userCart) {
-    userCart = {...defaultUserCart}
-    CartStore[userId] = userCart
-  }
-  return userCart
-}
