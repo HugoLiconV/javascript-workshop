@@ -5,13 +5,12 @@ import ProductPropType from '../../../propTypes/product'
 import './index.css'
 
 const Product = ({ product, onAdd }) => {
-  console.log(product)
   return (
     <div>
       <Card>
         <CardBody>
           <CardTitle>{product.title}</CardTitle>
-          <CardSubtitle className="product-subtitle">{`$${product.price}`}</CardSubtitle>
+          <CardSubtitle className="product-subtitle">{product.price}</CardSubtitle>
           {
             product.imageUrl &&
             <CardImg top width="100%" src={product.imageUrl} alt={product.title} />

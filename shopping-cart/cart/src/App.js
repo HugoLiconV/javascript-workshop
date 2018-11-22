@@ -4,18 +4,35 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Contexts from './contexts'
 import Cart from './components/cart'
 import Store from './components/store'
+import NavBar from './components/navbar'
+import ProductsService from './services/products'
+import CartService from './services/cart'
 import './App.css'
 
-const { ProductsContext } = Contexts
+const { ProductsContext, CartContext } = Contexts
 
 class App extends Component {
   constructor() {
     super()
+    this.productsService = new ProductsService()
+    this.cartService = new CartService()
     this.state = {
-      products: [
-        { id: 1, title: 'XPS 13', description: 'i7, 16Gb RAM, 256Gb SSD', price: 1560.6, imageUrl: 'https://i.dell.com/is/image/DellContent//content/dam/global-site-design/product_images/dell_client_products/notebooks/xps_notebooks/13_9370/global_spi/notebook-xps-13-9370-campaign-hero-504x350-ng.psd?fmt=jpg' }
-      ],
+      products: [],
+      cart: {items: [], total: 0}
     }
+  }
+
+  async componentDidMount() {
+    const products = await this.productsService.getProducts()
+    this.updateProducts(products)
+    const cart = await this.cartService.getCart()
+    this.updateCart(cart)
+  }
+
+  updateCart = cart => {
+    this.setState({
+      cart,
+    })
   }
 
   updateProducts = products => {
@@ -28,12 +45,19 @@ class App extends Component {
     return (
       <div className="App">
         <ProductsContext.Provider value={{products: this.state.products, updateProducts: this.updateProducts}}>
-          <Router>
-            <Switch>
-              <Route path="/cart" exact component={Cart} />
-              <Route path="/" component={Store} />
-            </Switch>
-          </Router>
+          <CartContext.Provider value={{ ...this.state.cart, updateCart: this.updateCart}}>
+            <Router>
+              <div>
+                <NavBar />
+                <div className="app-content">
+                  <Switch>
+                    <Route path="/cart" exact component={Cart} />
+                    <Route path="/" component={Store} />
+                  </Switch>
+                </div>
+              </div>
+            </Router>
+          </CartContext.Provider>
         </ProductsContext.Provider>
       </div>
     )

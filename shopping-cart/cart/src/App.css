@@ -1,16 +1,18 @@
 .App {
   background-color: #282c34;
   min-height: 100vh;
+}
+
+.app-content {
   padding: 0 40px;
-  /*display: flex;*/
-  /*justify-content: center;*/
-  /*font-size: calc(10px + 2vmin);*/
-  color: dimgrey;
-  text-align: center;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.card-title {
+  padding: 1rem;
 }
 
 @keyframes App-logo-spin {

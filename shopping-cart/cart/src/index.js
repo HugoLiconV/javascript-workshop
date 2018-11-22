@@ -2,7 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import * as serviceWorker from './serviceWorker'
+
+library.add(faShoppingCart)
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
