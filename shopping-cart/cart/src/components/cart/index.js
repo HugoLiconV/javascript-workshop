@@ -3,9 +3,10 @@ import { Card, CardBody, CardTitle, Row, Col, Button } from 'reactstrap';
 import { CartContext } from '../../contexts/cart';
 import CartProductList from '../common/cartProductList';
 import CartService from '../../services/cart';
+import PropTypes from 'prop-types';
 import './index.css';
 
-export default class Cart extends Component {
+class Cart extends Component {
   static contextType = CartContext;
   constructor(props) {
     super(props);
@@ -68,3 +69,16 @@ export default class Cart extends Component {
     );
   }
 }
+
+Cart.contextTypes = {
+  name: PropTypes.string,
+  items: PropTypes.array,
+  subtotal: PropTypes.number,
+  total: PropTypes.number,
+  getCart: PropTypes.func,
+  updateCart: PropTypes.func
+};
+
+// Cart.contextType = CartContext;
+
+export default Cart;

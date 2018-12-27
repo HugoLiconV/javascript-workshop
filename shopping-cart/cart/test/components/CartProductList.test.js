@@ -4,8 +4,8 @@ import chai, { expect } from 'chai';
 // import Cart from '../../components/cart';
 import chaiEnzyme from 'chai-enzyme';
 
-describe('App Component testing', function() {
-  it('Cart renders', () => {
+describe('Cart Product List Component testing', function() {
+  it('Cart product renders', () => {
     //   const wrapper = shallow(<Cart />);
     //   const editText = 'Online Store';
     //   // expect(true).to.contain(editText);
