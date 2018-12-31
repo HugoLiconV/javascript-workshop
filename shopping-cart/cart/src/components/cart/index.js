@@ -11,6 +11,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.cartService = new CartService();
+    this.onClearCart = this.onClearCart.bind(this);
   }
 
   onChangeQuantity = async (id, e) => {
@@ -24,10 +25,11 @@ class Cart extends Component {
     this.context.updateCart(cart);
   };
 
-  onClearCart = async () => {
+  async onClearCart() {
     const cart = await this.cartService.emptyCart();
+    console.log(cart);
     this.context.updateCart(cart);
-  };
+  }
 
   render() {
     return (
@@ -48,7 +50,11 @@ class Cart extends Component {
                 )}
                 {this.context.items.length > 0 && (
                   <div className="clear-cart-container">
-                    <Button onClick={this.onClearCart} color="danger">
+                    <Button
+                      id="clear-cart"
+                      onClick={this.onClearCart}
+                      color="danger"
+                    >
                       Clear Cart
                     </Button>
                   </div>
