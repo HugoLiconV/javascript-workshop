@@ -1,4 +1,8 @@
 {
   "presets": ["react-app"],
-  "plugins": ["@babel/plugin-transform-modules-commonjs", "inline-react-svg"]
+  "plugins": [
+    "@babel/plugin-transform-modules-commonjs",
+    "inline-react-svg",
+    "rewire"
+  ]
 }
