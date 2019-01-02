@@ -60,5 +60,4 @@ describe('Cart Product Component ', function() {
     expect(input).to.have.props({ value: props.item.qty });
   });
 
-  chai.use(chaiEnzyme());
 });

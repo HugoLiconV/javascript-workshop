@@ -12,5 +12,4 @@ describe('Product Component testing', function() {
     expect(true).to.be.true;
   });
 
-  chai.use(chaiEnzyme());
 });

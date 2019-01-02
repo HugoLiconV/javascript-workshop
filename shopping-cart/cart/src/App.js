@@ -1,13 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Contexts from './contexts';
-import Cart from './components/cart';
-import Store from './components/store';
-import NavBar from './components/navbar';
-import ProductsService from './services/products';
-import CartService from './services/cart';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Contexts from './contexts'
+import Cart from './components/cart'
+import Store from './components/store'
+import NavBar from './components/navbar'
+import ProductsService from './services/products'
+import CartService from './services/cart'
+import './App.css'
 
 const { ProductsContext, CartContext } = Contexts;
 

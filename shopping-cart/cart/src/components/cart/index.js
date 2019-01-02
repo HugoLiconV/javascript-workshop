@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, Row, Col, Button } from 'reactstrap';
-import { CartContext } from '../../contexts/cart';
-import CartProductList from '../common/cartProductList';
-import CartService from '../../services/cart';
-import PropTypes from 'prop-types';
-import './index.css';
+import React, { Component } from 'react'
+import { Card, CardBody, CardTitle, Row, Col, Button } from 'reactstrap'
+import { CartContext } from '../../contexts/cart'
+import CartProductList from '../common/cartProductList'
+import CartService from '../../services/cart'
+import PropTypes from 'prop-types'
+import './index.css'
 
-class Cart extends Component {
-  static contextType = CartContext;
+export default class Cart extends Component {
+  static contextType = CartContext
   constructor(props) {
-    super(props);
-    this.cartService = new CartService();
-    this.onClearCart = this.onClearCart.bind(this);
+    super(props)
+    this.cartService = new CartService()
+    this.onClearCart = this.onClearCart.bind(this)
   }
 
   onChangeQuantity = async (id, e) => {
-    const qty = e.target.value;
-    const cart = await this.cartService.updateCartItem(id, { qty });
-    this.context.updateCart(cart);
-  };
+    const qty = e.target.value
+    const cart = await this.cartService.updateCartItem(id, { qty })
+    this.context.updateCart(cart)
+  }
 
   onDeleteItem = async id => {
-    const cart = await this.cartService.removeFromCart(id);
-    this.context.updateCart(cart);
-  };
+    const cart = await this.cartService.removeFromCart(id)
+    this.context.updateCart(cart)
+  }
 
   async onClearCart() {
-    const cart = await this.cartService.emptyCart();
-    this.context.updateCart(cart);
+    const cart = await this.cartService.emptyCart()
+    this.context.updateCart(cart)
   }
 
   render() {
@@ -71,7 +71,7 @@ class Cart extends Component {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
@@ -82,8 +82,4 @@ Cart.contextTypes = {
   total: PropTypes.number,
   getCart: PropTypes.func,
   updateCart: PropTypes.func
-};
-
-// Cart.contextType = CartContext;
-
-export default Cart;
+}

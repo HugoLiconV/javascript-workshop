@@ -89,6 +89,4 @@ describe('Cart Component testing', function() {
         .dive()
     ).to.include.text('No items in your cart!');
   });
-
-  chai.use(chaiEnzyme());
 });

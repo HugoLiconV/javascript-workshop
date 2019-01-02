@@ -12,5 +12,4 @@ describe('Cart Product List Component testing', function() {
     expect(true).to.be.true;
   });
 
-  chai.use(chaiEnzyme());
 });

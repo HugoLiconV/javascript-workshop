@@ -11,6 +11,4 @@ describe('App Component testing', function() {
     // expect(wrapper).to.contain(editText);
     expect(true).to.be.true;
   });
-
-  chai.use(chaiEnzyme());
 });
