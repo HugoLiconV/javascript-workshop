@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import chaiEnzyme from 'chai-enzyme';
 import Cart from '../../src/components/cart';
 import 'jsdom-global/register';
+import CartService from '../../src/services/cart';
 
 describe('Cart Component testing', function() {
   let items;
@@ -43,10 +44,6 @@ describe('Cart Component testing', function() {
     ];
   });
 
-  afterEach(() => {
-    // Cart.prototype.onClearCart.restore
-  });
-
   const setup = newContext => {
     const updateCart = sinon.spy();
     const getCart = sinon.spy();
@@ -58,7 +55,6 @@ describe('Cart Component testing', function() {
       updateCart,
       ...newContext
     };
-    // const context = { name: 'foo' };
     const wrapper = shallow(<Cart />, { context });
     return { wrapper, context };
   };
@@ -78,21 +74,21 @@ describe('Cart Component testing', function() {
     expect(wrapper.find('CartProductList')).to.be.present();
   });
 
-  // it('should clean cart with button', () => {
-  //   const spy = sinon.spy(Cart.prototype, 'onClearCart');
-  //   const { wrapper } = setup({ items });
-  //   const deleteButton = wrapper.find('#clear-cart');
-  //   // sinon.replace(Cart, 'onClearCart', mock);
-  //   deleteButton.simulate('click');
-  //   wrapper.setContext()
-  //   expect(spy.calledOnce).to.be.true;
-  //   // expect(
-  //   //   wrapper
-  //   //     .find('CardBody')
-  //   //     .first()
-  //   //     .dive()
-  //   // ).to.include.text('No items in your cart!');
-  // });
+  it('should clean cart with button', () => {
+    sinon
+      .stub(CartService.prototype, 'emptyCart')
+      .callsFake(() => Promise.resolve({ items: [], total: 0 }));
+    const { wrapper } = setup({ items });
+    const deleteButton = wrapper.find('#clear-cart');
+    deleteButton.simulate('click');
+    wrapper.setContext({ items: [], total: 0 });
+    expect(
+      wrapper
+        .find('CardBody')
+        .first()
+        .dive()
+    ).to.include.text('No items in your cart!');
+  });
 
   chai.use(chaiEnzyme());
 });

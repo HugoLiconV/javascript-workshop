@@ -27,7 +27,6 @@ class Cart extends Component {
 
   async onClearCart() {
     const cart = await this.cartService.emptyCart();
-    console.log(cart);
     this.context.updateCart(cart);
   }
 

@@ -1,44 +1,45 @@
-import RequestService from './request'
+import RequestService from './request';
 
 export default class CartService extends RequestService {
   constructor() {
-    super('http://localhost:8080/api/cart')
+    super('http://localhost:8080/api/cart');
   }
 
   async getCart() {
     return await this.makeRequest({
       url: '/',
-      method: 'get',
-    })
+      method: 'get'
+    });
   }
 
   async addCartItem(id, data) {
     return await this.makeRequest({
       url: `/${id}`,
       method: 'post',
-      data,
-    })
+      data
+    });
   }
 
   async updateCartItem(id, data) {
     return await this.makeRequest({
       url: `/${id}`,
       method: 'put',
-      data,
-    })
+      data
+    });
   }
 
   async removeFromCart(id) {
     return await this.makeRequest({
       url: `/${id}`,
-      method: 'delete',
-    })
+      method: 'delete'
+    });
   }
 
   async emptyCart() {
+    console.log('cleaning cart...');
     return await this.makeRequest({
       url: '/',
       method: 'delete'
-    })
+    });
   }
 }

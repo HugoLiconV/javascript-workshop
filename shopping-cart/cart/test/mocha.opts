@@ -1,4 +1,5 @@
 --recursive
+--watch
 --require @babel/register 
 --require test/test_helper
 --require ignore-styles
